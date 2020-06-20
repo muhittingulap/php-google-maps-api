@@ -42,6 +42,18 @@ class maps
         return $this;
     }
 
+    public function getDirections()
+    {
+        /* setData parrametreleri
+       * origin => place_id id gönderilmeli ex : ChIJz7GHArHHyhQR_pn4LBC6SA8 veya lat long olarakda gönderilebilir
+       * destination => place_id id gönderilmeli  veya lat long olarakda gönderilebilir
+       * departure_time => anlık ise  'now' değilse unixtimestamp olarak tarih saat bilgisi int olarak
+       * */
+        $this->api_method = "directions";
+        $this->call();
+        return $this;
+    }
+
 
     public function setApiResponseType($method = "json", $return = "array")
     {
