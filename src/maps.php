@@ -30,6 +30,17 @@ class maps
         return $this;
     }
 
+    public function setApiResponseType($method = "json", $return = "array")
+    {
+        /*
+         * return_method: json / xml
+         * return_type: json / array
+         * */
+        $this->return_method = $method;
+        $this->return_type = $return;
+        return $this;
+    }
+
     public function getDistance()
     {
         /* setData parrametreleri
@@ -55,20 +66,14 @@ class maps
     }
 
 
-    public function setApiResponseType($method = "json", $return = "array")
-    {
-        /*
-         * return_method: json / xml
-         * return_type: json / array
-         * */
-        $this->return_method = $method;
-        $this->return_type = $return;
-        return $this;
-    }
 
     public function getResponse()
     {
-        if($this->return_type=='array') $this->response = json_decode($this->response, true);
+        if($this->return_type=='array'){
+            $this->response = json_decode($this->response, true);
+        }else{
+           header('content-type:application/'.$this->return_method);
+        }
 
         return $this->response;
     }
